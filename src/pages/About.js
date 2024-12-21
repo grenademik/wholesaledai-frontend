@@ -9,11 +9,11 @@ import women2 from "../assets/img/women-2.png";
 import women3 from "../assets/img/women-3.png";
 
 const About = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 
-  return (
+	return (
 		<div className="bg-gray-50">
 			<div className="flex justify-center py-10 lg:py-20 bg-page-header-bg bg-indigo-100 w-full bg-cover bg-no-repeat bg-bottom bg-page-header ">
 				<div className="flex mx-auto w-full max-w-screen-2xl px-3 sm:px-10">
@@ -29,7 +29,7 @@ const About = () => {
 					<div className="grid grid-flow-row lg:grid-cols-2 gap-4 lg:gap-16 ">
 						<div>
 							<h3 className="text-xl lg:text-3xl mb-2  font-semibold">
-								Welcome to our KachaBazar
+								Welcome to Wholesale Dai
 							</h3>
 							<div className="mt-3 text-base opacity-90 leading-7">
 								<p className="mb-4">

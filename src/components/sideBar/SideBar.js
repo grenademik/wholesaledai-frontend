@@ -52,7 +52,7 @@ const SideBar = () => {
                   maxWidth: "100%",
                 }}
               >
-                <img className="h-9 w-24" src={logo} />
+                {/* <img className="h-9 w-24" src={logo} /> */}
               </span>
             </Link>
           </h2>

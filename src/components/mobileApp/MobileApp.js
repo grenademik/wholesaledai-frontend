@@ -30,7 +30,7 @@ function MobileApp() {
           </div>
           <div className="text-center">
             <h3 className="text-xl md:text-2xl lg:text-3xl font-bold  mb-3">
-              Get Your Daily Needs From Our KachaBazar Store
+              Get Your Daily Needs From Our Wholesale Dai Store
             </h3>
             <p className="text-base opacity-90 leading-7">
               There are many products you will find our shop, Choose your daily

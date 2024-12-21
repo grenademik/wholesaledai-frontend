@@ -163,15 +163,15 @@ function Footer() {
                       maxWidth: "100%",
                     }}
                   >
-                    <img className=" w-[110px] h-10" src={LogoColor} />
+                    {/* <img className=" w-[110px] h-10" src={LogoColor} /> */}
                   </span>
                 </Link>
 
                 <p className="leading-7 font-sans text-sm text-gray-600 mt-3">
                   <span>
-                    NO 2 Adegoke Bus Stop Orita 
+                    NO 2 Adegoke Bus Stop Orita
                     Challenge, Ibadan Oyo,
-                     Nigeria
+                    Nigeria
                   </span>
                   <br />
                   <span>Tell:+234-808-888-6823</span>
@@ -338,7 +338,7 @@ function Footer() {
           <div className="mx-auto max-w-screen-2xl px-3 sm:px-10 flex justify-center py-4">
             <p className="text-sm text-gray-500 leading-6">
               Copyright 2023 @
-              <span className="text-emerald-500">KachaBazar</span>, All rights
+              <span className="text-emerald-500">Wholesale Dai</span>, All rights
               reserved.
             </p>
           </div>
