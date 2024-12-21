@@ -37,7 +37,7 @@ function App() {
 	useUserFromLocalStorage();
 	return (
 		<Fragment>
-			<Header />
+			{/* <Header /> */}
 			<Navigation />
 			<Routes>
 				<Route path="/" element={<Layout />}>
