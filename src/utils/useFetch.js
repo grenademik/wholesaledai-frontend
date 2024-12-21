@@ -5,7 +5,6 @@ const useFetch = (apiUrl) => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    console.log(data)
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -22,7 +21,7 @@ const useFetch = (apiUrl) => {
                 setLoading(false);
             }
         };
-
+        console.log(data)
         fetchData();
     }, [apiUrl]);
 

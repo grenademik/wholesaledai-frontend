@@ -51,9 +51,9 @@ function Home() {
 
         <Categories />
 
-        {/* <PopularProduct /> */}
-        <FastDeliveryCard />
-        <LatestDiscountedProduct />
+        <PopularProduct />
+        {/* <FastDeliveryCard /> */}
+        {/* <LatestDiscountedProduct /> */}
       </div>
     </div>
   );

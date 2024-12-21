@@ -23,8 +23,8 @@ const ProductList = ({ data }) => {
         {currentTableData.map((data, index) => {
           return <Card key={index} data={data} />;
         })}
-           
-      </div> 
+
+      </div>
       <Pagination
         className="pagination-bar"
         currentPage={currentPage}
