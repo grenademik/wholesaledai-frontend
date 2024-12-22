@@ -40,8 +40,6 @@ function Categories() {
 
   const { data, loading, error } = useFetch(`${Api}${convertToQueryParams(filters)}`);
 
-
-  console.log(data)
   return (
     <div className="bg-gray-100 lg:py-16 py-10">
       <div className="mx-auto max-w-screen-2xl px-3 sm:px-10">

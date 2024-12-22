@@ -26,7 +26,6 @@ function Card({ data }) {
   };
   const Cart = cart.cartItems.find((cartItem) => cartItem.id === data.id);
 
-  console.log(data)
   return (
     <>
       {" "}
@@ -55,7 +54,7 @@ function Card({ data }) {
               boxSizing: "borderBox",
               display: "inline-block",
               overflow: "hidden",
-              width: "initial",
+              width: "100%",
               height: "initial",
               background: "none",
               opacity: "1",
@@ -101,7 +100,7 @@ function Card({ data }) {
               className="object-cover transition duration-150 ease-linear transform group-hover:scale-105"
               style={{
                 inset: "0px",
-                boxSizing: " border-box",
+                boxSizing: "border-box",
                 padding: "0px",
                 border: "none",
                 margin: "auto",
@@ -119,16 +118,18 @@ function Card({ data }) {
         <div className="w-full px-3 lg:px-4 pb-4 overflow-hidden">
           <div className="relative mb-1">
             <span className="text-gray-400 font-medium text-xs d-block mb-1">
-              {/* {data.unit} */}
+              {data?.category_details?.name}
             </span>
             <h2 className="text-heading truncate mb-0 block text-sm font-medium text-gray-600">
-              <span className="line-clamp-2">{data?.name}</span>
+              <span className="line-clamp-2 capitalize">
+                {data?.name}
+              </span>
             </h2>
           </div>
           <div className="flex justify-between items-center text-heading text-sm sm:text-base space-s-2 md:text-base lg:text-xl">
             <div className="product font-bold">
               <span className="inline-block text-lg font-semibold text-gray-800">
-                ${data?.properties?.price_range?.lowest_price}
+                Rs. {data?.properties?.price_range?.lowest_price}
               </span>
               {/* {data.price === data.originalPrice ? (
                 ""

@@ -8,9 +8,6 @@ const apiRequest = async (api, method, data = null) => {
     const accessToken = userData?.tokens?.access;
     const refreshToken = userData?.tokens?.refresh;
 
-    console.log(accessToken)
-    console.log(refreshToken)
-
     if (!accessToken) {
         if (!refreshToken) {
             toast.error('Authentication failed. Please log in again.');

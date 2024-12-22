@@ -17,13 +17,12 @@ function PopularProduct() {
     ordering: null,
     is_active: null,
     page: 1,
-    size: 20,
+    size: 1,
     search: null,
     tags: null,
   });
 
   const { data, loading, error } = useFetch(`${Api}${convertToQueryParams(filters)}`);
-  console.log(data)
   return (
     <div
       id="discount"
