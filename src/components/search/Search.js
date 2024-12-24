@@ -11,8 +11,8 @@ const Search = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  const data=getProductByParentCategory("fish & meat")
-console.log(data)
+  const data = getProductByParentCategory("fish & meat")
+
   //   useEffect(() => {
 
   //     const value =

@@ -29,7 +29,7 @@ const ChangePassword = () => {
 			confirmPassword: values.confirmPassword,
 			token,
 		};
-		console.log(data);
+
 		setIsLoading(true);
 		axios
 			.post(`${process.env.REACT_APP_BASE_API_URL}/user/change-password`, data)
@@ -44,9 +44,9 @@ const ChangePassword = () => {
 				toast.error(
 					error
 						? error?.response?.data?.message ||
-								error?.response?.data?.error.message ||
-								error?.message ||
-								error?.response?.data.error
+						error?.response?.data?.error.message ||
+						error?.message ||
+						error?.response?.data.error
 						: error?.message
 				);
 				setIsLoading(false);

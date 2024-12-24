@@ -24,6 +24,7 @@ function Card({ data }) {
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
   };
+
   const Cart = cart.cartItems.find((cartItem) => cartItem.id === data.id);
 
   return (
@@ -129,7 +130,8 @@ function Card({ data }) {
           <div className="flex justify-between items-center text-heading text-sm sm:text-base space-s-2 md:text-base lg:text-xl">
             <div className="product font-bold">
               <span className="inline-block text-lg font-semibold text-gray-800">
-                Rs. {data?.properties?.price_range?.lowest_price}
+                {data?.properties?.price_range?.lowest_price ? `Rs. ${data?.properties?.price_range?.lowest_price}` : `Rs. ${data?.properties?.price_range?.highest_price}`}
+
               </span>
               {/* {data.price === data.originalPrice ? (
                 ""
@@ -218,7 +220,7 @@ function Card({ data }) {
           </div>
         </div>
       </div>
-      {/* <Modal data={data} isOpen={isOpen} closeModal={closeModal} /> */}
+      {isOpen && <Modal slug={data?.slug} isOpen={isOpen} closeModal={closeModal} />}
     </>
   );
 }
