@@ -125,8 +125,6 @@ function Product() {
                     </span>
                   )} */}
 
-
-
                   <span
                     style={{
                       boxSizing: "border-box",
@@ -144,8 +142,9 @@ function Product() {
                   >
                     <img
                       alt={data?.title}
-                      src={data?.thumbnail_image}
+                      src={filteredInventory ? `https://wholesale.bepasal.com${filteredInventory?.thumbnail_image}` : data?.thumbnail_image}
                       sizes="100vw"
+                      className="w-full h-auto"
                     />
                   </span>
                 </div>
