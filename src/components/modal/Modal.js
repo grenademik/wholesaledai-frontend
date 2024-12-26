@@ -80,7 +80,7 @@ export default function Modal({ isOpen, closeModal, slug }) {
                       <div className="w-full flex flex-col p-5 md:p-8 text-left">
                         <div className="mb-2 md:mb-2.5 block -mt-1.5">
                           <h1 className="text-heading text-lg md:text-xl lg:text-2xl font-semibold !text-black !no-underline capitalize cursor-pointer">
-                            <Link className="!no-underline  !text-black " to={"/product/" + data?.href}>{data.name}</Link>
+                            <Link className="!no-underline !text-black" to={"/product/" + data?.slug}>{data.name}</Link>
                           </h1>
                           {data.quantity === 0 ? (
                             <span className="bg-red-100 text-red-600 rounded-full inline-flex items-center justify-center px-2 py-1 text-xs font-semibold  mt-2">

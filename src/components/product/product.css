@@ -1,0 +1,31 @@
+.inventory-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.inventory-row {
+  margin-bottom: 15px;
+}
+
+.inventory-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.inventory-button {
+  padding: 10px 20px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+}
+
+.inventory-button:hover {
+  background-color: #ddd;
+}
+
+.inventory-button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
