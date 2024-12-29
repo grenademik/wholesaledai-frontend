@@ -8,6 +8,7 @@ import { addByIncrement } from "../../store/reducers/cartSlice";
 import { getProductByChildrenCategory, getProductById } from "../../fakeData/Products";
 import useFetch from "../../utils/useFetch";
 import "./product.css";
+import CustomGallery from "../customGallery/CustomGallery";
 
 
 function Product() {
@@ -54,7 +55,10 @@ function Product() {
       dispatch(addByIncrement({ product: inventory, cartQuantity: total }));
     }
   };
-  console.log(filteredInventory)
+
+
+  const images = data?.inventories_details.map(item => item.thumbnail_image);
+  console.log(images)
   return (
     <div className="bg-gray-50">
       {loading ? <div>Loading...</div> : error ? <div>Error: {error.message}</div> : (
@@ -118,14 +122,14 @@ function Product() {
             </div>
             <div className="w-full rounded-lg p-3 lg:p-12 bg-white">
               <div className="flex flex-col xl:flex-row">
-                <div className="flex-shrink-0 xl:pr-10 lg:block w-full mx-auto md:w-6/12 lg:w-5-12 xl:w-4/12">
-                  {/* {data.discount === 0 ? "" : (
+                <div className=" flex-shrink-0 xl:pr-10 lg:block w-full mx-auto md:w-6/12 lg:w-5-12 xl:w-4/12">
+                  {data.discount === 0 ? "" : (
                     <span className=" text-dark text-sm bg-orange-500 text-white py-1 px-2 rounded font-medium z-10 right-4 top-4">
                       {Math.ceil(data.discount)}% Off
                     </span>
-                  )} */}
+                  )}
 
-                  <span
+                  {/* <span
                     style={{
                       boxSizing: "border-box",
                       display: "block",
@@ -146,7 +150,11 @@ function Product() {
                       sizes="100vw"
                       className="w-full h-auto"
                     />
-                  </span>
+                  </span> */}
+
+
+                  <CustomGallery width={`100%`} className="w-full h-auto" images={images} />
+
                 </div>
                 <div className="w-full">
                   <div className="flex flex-col md:flex-row lg:flex-row xl:flex-row">
