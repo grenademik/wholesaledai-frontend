@@ -13,11 +13,9 @@ import CustomGallery from "../customGallery/CustomGallery";
 
 function Product() {
   const [total, setTotal] = useState(1);
-  const [selectedAttributes, setSelectedAttributes] = useState({
-    size: null,
-    color: null,
-  });
+  const [selectedAttributes, setSelectedAttributes] = useState({});
   const [filteredInventory, setFilteredInventory] = useState(null);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const { productTitle } = useParams();
   const Api = `inventory/products`;
@@ -31,7 +29,7 @@ function Product() {
 
   useEffect(() => {
     if (data && data.inventories_details) {
-      const filtered = data.inventories_details.find((inventory) => {
+      const filtered = data.inventories_details.filter((inventory) => {
         return (
           Object.values(selectedAttributes).some((value) => value) && // Ensure at least one attribute is selected
           Object.entries(selectedAttributes).every(
@@ -56,9 +54,30 @@ function Product() {
     }
   };
 
+  const galleryImages = [
+    data?.thumbnail_image,
+    ...(Array.isArray(data?.inventories_details)
+      ? data?.inventories_details.flatMap(item => [
+        item.thumbnail_image,
+        ...(item.extra_images || [])
+          .filter(image => image.is_active)
+          .map(image => image.image)
+      ])
+      : [])
+  ];
 
-  const images = data?.inventories_details.map(item => item.thumbnail_image);
-  console.log(images)
+  const images = filteredInventory?.length > 0
+    ? filteredInventory.flatMap((inventory) => [
+      inventory.thumbnail_image,
+      ...(Array.isArray(inventory.extra_images)
+        ? inventory.extra_images
+          .filter((image) => image.is_active)
+          .map((image) => image.image)
+        : [])
+    ])
+    : galleryImages;
+
+
   return (
     <div className="bg-gray-50">
       {loading ? <div>Loading...</div> : error ? <div>Error: {error.message}</div> : (
@@ -166,9 +185,14 @@ function Product() {
                       </div>
                       <div className="font-bold">
                         <span className="inline-block text-2xl">
-                          {filteredInventory ? `Rs. ${filteredInventory.price}` :
-                            `Rs. ${data?.properties?.price_range?.lowest_price} - ${data?.properties?.price_range?.highest_price}`
+                          {filteredInventory?.length > 0
+                            ? filteredInventory.length > 1
+                              ? `Rs. ${Math.min(...filteredInventory.map(item => parseFloat(item.price)))} - Rs. ${Math.max(...filteredInventory.map(item => parseFloat(item.price)))}`
+                              : `Rs. ${filteredInventory[0].price}`
+                            : `Rs. ${data?.properties?.price_range?.lowest_price} - ${data?.properties?.price_range?.highest_price}`
                           }
+
+
                         </span>
                         {data?.originalPrice === data.price ? "" : (
                           <del className="text-lg font-normal text-gray-400 ml-1">
@@ -176,9 +200,20 @@ function Product() {
                           </del>
                         )}
                       </div>
-                      <p className="text-sm leading-6 text-gray-500 md:leading-7 mb-4">
-                        {data.description}
-                      </p>
+                      <div className="mb-4">
+                        <p
+                          className={`text-sm leading-6 text-gray-500 md:leading-7 mb-2 ${!isExpanded ? "line-clamp-4" : ""
+                            }`}
+                        >
+                          {data.description}
+                        </p>
+                        <button
+                          onClick={() => setIsExpanded(!isExpanded)}
+                          className="text-blue-500"
+                        >
+                          {isExpanded ? "Show Less" : "Show More"}
+                        </button>
+                      </div>
 
                       <div>
 
@@ -318,7 +353,7 @@ function Product() {
                                   key={index}
                                   className="bg-gray-50 mr-2 border-0 text-gray-600 rounded-full inline-flex items-center justify-center px-3 py-1 text-xs font-semibold mt-2"
                                 >
-                                  #{tag}
+                                  {tag}
                                 </span>
                               ))}
                           </div>

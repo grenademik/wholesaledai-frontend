@@ -6,9 +6,11 @@ module.exports = {
     extend: {
       backgroundImage: {
         'page-header-bg': "url('/src/assets/img/page-header-bg.jpg')",
-        
+
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+  ],
 }
