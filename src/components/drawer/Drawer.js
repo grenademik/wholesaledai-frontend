@@ -5,14 +5,19 @@ import "rsuite/dist/rsuite.min.css";
 import { useSelector, useDispatch } from "react-redux";
 import { shoppingCardAction } from "../../store/reducers/shoppingCardSlice";
 import { decreaseCart, getTotals, incrementCart, removeFromCart } from "../../store/reducers/cartSlice";
+
 function DrawerCart() {
   const open = useSelector((state) => state.shoppingCard.value);
   const cart = useSelector((state) => state.cart);
-  const{cartTotalAmount}=useSelector((state) => state.cart)
+  const { cartTotalAmount } = useSelector((state) => state.cart)
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getTotals());
   }, [cart, dispatch]);
+
+
+  console.log(cart)
   return (
     <div>
       <Drawer
@@ -75,7 +80,7 @@ function DrawerCart() {
             </button>
           </div>
           <div className="overflow-y-scroll flex-grow scrollbar-hide w-full max-h-full">
-            {}
+            { }
 
             {cart.cartItems.length === 0 ? (
               <div className="flex flex-col h-full justify-center">
@@ -112,28 +117,28 @@ function DrawerCart() {
                 >
                   <div className="relative flex rounded-full border border-gray-100 shadow-sm overflow-hidden flex-shrink-0 cursor-pointer mr-4">
                     <img
-                      src={data.image}
-                      width="40"
-                      height="40"
-                      alt={data.title}
+                      src={data.thumbnail_image}
+                      alt={data.thumbnail_image}
+                      className="w-10 h-10 object-cover rounded-full"
                     />
                   </div>
+
                   <div className="flex flex-col w-full overflow-hidden">
                     <Link
                       className="truncate text-sm font-medium !no-underline !text-gray-700 text-heading line-clamp-1"
                       to="/product/strawberrie"
                     >
-                      {data.title}
+                      {data.name}
                     </Link>
                     <span className="text-xs text-gray-400 mb-1">
-                      Item Price ${data.price}
+                      Item Price Rs. {data.price}
                     </span>
                     <div className="flex items-center justify-between">
                       <div className="font-bold text-sm md:text-base text-heading leading-5">
-                        <span>${data.price*data.cartQuantity}</span>
+                        <span>Rs.{data.price * data.cartQuantity}</span>
                       </div>
                       <div className="h-8 w-22 md:w-24 lg:w-24 flex flex-wrap items-center justify-evenly p-1 border border-gray-100 bg-white text-gray-600 rounded-md">
-                        <button onClick={()=>dispatch(decreaseCart(data))} >
+                        <button onClick={() => dispatch(decreaseCart(data))} >
                           <span className="text-dark text-base">
                             <svg
                               stroke="currentColor"
@@ -153,7 +158,7 @@ function DrawerCart() {
                         <p className="text-sm font-semibold text-dark px-1">
                           {data.cartQuantity}
                         </p>
-                        <button onClick={()=>dispatch(incrementCart(data))}>
+                        <button onClick={() => dispatch(incrementCart(data))}>
                           <span className="text-dark text-base">
                             <svg
                               stroke="currentColor"
@@ -172,7 +177,7 @@ function DrawerCart() {
                           </span>
                         </button>
                       </div>
-                      <button onClick={() =>dispatch(removeFromCart(data))} className="hover:text-red-600 text-red-400 text-lg cursor-pointer">
+                      <button onClick={() => dispatch(removeFromCart(data))} className="hover:text-red-600 text-red-400 text-lg cursor-pointer">
                         <svg
                           stroke="currentColor"
                           fill="none"
@@ -200,7 +205,7 @@ function DrawerCart() {
           <div className="mx-5 my-3">
             <span>
               <Link
-                to={cart.cartItems.length===0?"/":"/checkout"}
+                to={cart.cartItems.length === 0 ? "/" : "/checkout"}
                 onClick={() => dispatch(shoppingCardAction(false))}
                 className=" w-full py-3 px-3 rounded-lg !text-white !no-underline !bg-emerald-500 hover:!bg-emerald-600 flex items-center justify-between bg-heading text-sm sm:text-base  focus:outline-none transition duration-300"
               >
@@ -208,7 +213,7 @@ function DrawerCart() {
                   Proceed To Checkout
                 </span>
                 <span className="rounded-lg font-bold  py-2 px-3 bg-white text-emerald-600">
-                  ${cartTotalAmount}
+                  Rs. {cartTotalAmount}
                 </span>
               </Link>
             </span>

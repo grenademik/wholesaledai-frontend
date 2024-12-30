@@ -9,9 +9,7 @@ const useFetch = (apiUrl) => {
         const fetchData = async () => {
             try {
                 const response = await get(apiUrl);
-                console.log(response)
                 if (response) {
-                    console.log(response)
                     setData(response);
                 }
             } catch (error) {
