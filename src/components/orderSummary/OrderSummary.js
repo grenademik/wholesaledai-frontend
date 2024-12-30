@@ -48,10 +48,11 @@ function OrderSummary() {
 								>
 									<div className="relative flex rounded-full border border-gray-100 shadow-sm overflow-hidden flex-shrink-0 cursor-pointer mr-4">
 										<img
-											src={cartItem.image}
+											src={cartItem.thumbnail_image}
 											width="40"
 											height="40"
 											alt="Blueberry"
+											className="w-10 h-10 object-cover rounded-full"
 										/>
 									</div>
 									<div className="flex flex-col w-full overflow-hidden">
@@ -62,12 +63,12 @@ function OrderSummary() {
 											{cartItem.title}
 										</Link>
 										<span className="text-xs text-gray-400 mb-1">
-											Item Price $ {cartItem.price}
+											Item Price Rs. {cartItem.price}
 										</span>
 										<div className="flex items-center justify-between">
 											<div className="font-bold text-sm md:text-base text-heading leading-5">
 												<span className="text-black">
-													$ {cartItem.price * cartItem.cartQuantity}
+													Rs. {cartItem.price * cartItem.cartQuantity}
 												</span>
 											</div>
 											<div className="h-8 w-22 md:w-24 lg:w-24 flex flex-wrap items-center justify-evenly p-1 border border-gray-100 bg-white text-gray-600 rounded-md">
@@ -158,25 +159,25 @@ function OrderSummary() {
 				<div className="flex items-center py-2 text-sm w-full font-semibold text-gray-500 last:border-b-0 last:text-base last:pb-0   ">
 					Subtotal
 					<span className="ml-auto flex-shrink-0 text-gray-800 font-bold">
-						$ {cartTotalAmount}
+						Rs. {cartTotalAmount}
 					</span>
 				</div>
 				<div className="flex items-center py-2 text-sm w-full font-semibold text-gray-500 last:border-b-0 last:text-base last:pb-0   ">
 					Shipping Cost
 					<span className="ml-auto flex-shrink-0 text-gray-800 font-bold">
-						$ 0.00
+						Rs. 0.00
 					</span>
 				</div>
 				<div className="flex items-center py-2 text-sm w-full font-semibold text-gray-500 last:border-b-0 last:text-base last:pb-0">
 					Discount
 					<span className="ml-auto flex-shrink-0 font-bold text-orange-400">
-						$ 0.00
+						Rs. 0.00
 					</span>
 				</div>
 				<div className="border-t mt-4 text-black">
 					<div className="flex items-center font-bold justify-between pt-5 text-sm uppercase">
 						Total Cost
-						<span className="font-extrabold text-lg">$ {cartTotalAmount}</span>
+						<span className="font-extrabold text-lg normal-case">Rs. {cartTotalAmount}</span>
 					</div>
 				</div>
 			</div>
