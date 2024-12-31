@@ -17,7 +17,6 @@ function DrawerCart() {
   }, [cart, dispatch]);
 
 
-  console.log(cart)
   return (
     <div>
       <Drawer
@@ -125,10 +124,10 @@ function DrawerCart() {
 
                   <div className="flex flex-col w-full overflow-hidden">
                     <Link
-                      className="truncate text-sm font-medium !no-underline !text-gray-700 text-heading line-clamp-1"
+                      className="truncate text-sm capitalize font-medium !no-underline !text-gray-700 text-heading line-clamp-1"
                       to="/product/strawberrie"
                     >
-                      {data.name}
+                      {data.properties?.product_info?.name} - {Object.values(data.attributes).join(" - ")}
                     </Link>
                     <span className="text-xs text-gray-400 mb-1">
                       Item Price Rs. {data.price}

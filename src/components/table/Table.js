@@ -1,10 +1,7 @@
 import React from 'react';
 
 const Table = ({ title, data, loading, error }) => {
-	var formatter = new Intl.NumberFormat('en-US', {
-		style: 'currency',
-		currency: 'USD',
-	});
+
 	const handlePay = (item) => {
 		console.log(item);
 	};
@@ -63,16 +60,17 @@ const Table = ({ title, data, loading, error }) => {
 														{index + 1}
 													</th>
 													<td className="px-6 py-1 whitespace-nowrap font-normal text-gray-500">
-														{item._id}
+														{item.order_number}
 													</td>
 													<td className="px-6 py-1 whitespace-nowrap font-bold text-center">
-														{formatter.format(item.totalPrice)}
+														Rs. {item.sub_total_amount}
 													</td>
 													<td className="px-6 py-1 whitespace-nowrap font-bold text-center font-DejaVu">
-														{item.createdAt}
+														{new Date(item.created_at).toISOString().split('T')[0].replace(/-/g, '/')}
 													</td>
+
 													<td className="px-6 py-1 whitespace-nowrap text-right font-bold font-DejaVu k-grid">
-														{!item?.isPaid ? (
+														{!item?.is_paid ? (
 															<button
 																onClick={handlePay}
 																className={`text-blue-500 m-1 rounded-md`}
@@ -81,11 +79,10 @@ const Table = ({ title, data, loading, error }) => {
 															</button>
 														) : (
 															<p
-																className={`${
-																	item.isDelivered === 'processing'
-																		? `text-yellow-500`
-																		: 'text-green-500'
-																} m-1 rounded-md capitalize`}
+																className={`${item.status === 'processing'
+																	? `text-yellow-500`
+																	: 'text-green-500'
+																	} m-1 rounded-md capitalize`}
 															>
 																{item.isDelivered}
 															</p>

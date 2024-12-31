@@ -142,7 +142,7 @@ function OrderSummary() {
 						})
 					)}
 				</div>
-				<div className="flex items-center mt-4 py-4 lg:py-4 text-sm w-full font-semibold text-heading last:border-b-0 last:text-base last:pb-0 ">
+				{/* <div className="flex items-center mt-4 py-4 lg:py-4 text-sm w-full font-semibold text-heading last:border-b-0 last:text-base last:pb-0 ">
 					<form className="w-full">
 						<div className="flex flex-col sm:flex-row items-start justify-end">
 							<input
@@ -155,7 +155,7 @@ function OrderSummary() {
 							</button>
 						</div>
 					</form>
-				</div>
+				</div> */}
 				<div className="flex items-center py-2 text-sm w-full font-semibold text-gray-500 last:border-b-0 last:text-base last:pb-0   ">
 					Subtotal
 					<span className="ml-auto flex-shrink-0 text-gray-800 font-bold">

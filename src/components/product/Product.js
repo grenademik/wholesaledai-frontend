@@ -10,15 +10,24 @@ import CustomGallery from "../customGallery/CustomGallery";
 
 
 function Product() {
-  const [total, setTotal] = useState(1);
+
+
   const [selectedAttributes, setSelectedAttributes] = useState({});
   const [filteredInventory, setFilteredInventory] = useState(null);
   const [isExpanded, setIsExpanded] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-
+  const [total, setTotal] = useState(
+    filteredInventory?.[0]?.properties?.product_info?.minimum_order_quantity || 0
+  );
   const { productTitle } = useParams();
   const Api = `inventory/products`;
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (filteredInventory?.[0]?.properties?.product_info?.minimum_order_quantity) {
+      setTotal(filteredInventory[0].properties.product_info.minimum_order_quantity);
+    }
+  }, [filteredInventory]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -80,6 +89,7 @@ function Product() {
     ])
     : galleryImages;
 
+  console.log(filteredInventory)
   return (
     <div className="bg-gray-50">
       {loading ? <div>Loading...</div> : error ? <div>Error: {error.message}</div> : (
@@ -235,13 +245,13 @@ function Product() {
 
                         {filteredInventory ? (
                           <div>
-                            <p>SKU: {filteredInventory.sku}</p>
+                            <p>SKU: {filteredInventory[0]?.sku}</p>
                             <div className="flex items-center mt-4">
                               <div className="flex items-center justify-between space-s-3 sm:space-s-4 w-full">
                                 <div className="group flex items-center justify-between rounded-md overflow-hidden flex-shrink-0 border h-11 md:h-12 border-gray-300">
                                   <button
                                     onClick={() => setTotal(total - 1)}
-                                    disabled={total <= 1 ? true : false}
+                                    disabled={total <= filteredInventory.stock ? true : false}
                                     className="flex items-center justify-center flex-shrink-0 h-full transition ease-in-out duration-300 focus:outline-none w-8 md:w-12 text-heading border-e border-gray-300 hover:text-gray-500"
                                   >
                                     <span className="text-dark text-base">
@@ -264,7 +274,7 @@ function Product() {
                                     {total}
                                   </p>
                                   <button
-                                    disabled={data.quantity === 0 ? true : false}
+                                    disabled={filteredInventory.stock === 0 ? true : false}
                                     onClick={() => {
 
                                       setTotal(total + 1)
@@ -288,7 +298,7 @@ function Product() {
                                   </button>
                                 </div>
 
-                                <button disabled={data.quantity === 0 ? true : false} onClick={() => handleAddToCart(filteredInventory)} className="text-sm leading-4 inline-flex items-center cursor-pointer transition ease-in-out duration-300 font-semibold text-center justify-center border-0 border-transparent rounded-md focus-visible:outline-none focus:outline-none text-white px-4 ml-4 md:px-6 lg:px-8 py-4 md:py-3.5 lg:py-4 hover:text-white bg-emerald-500 hover:bg-emerald-600 w-full h-12">
+                                <button disabled={filteredInventory.stock === 0 ? true : false} onClick={() => handleAddToCart(filteredInventory)} className="text-sm leading-4 inline-flex items-center cursor-pointer transition ease-in-out duration-300 font-semibold text-center justify-center border-0 border-transparent rounded-md focus-visible:outline-none focus:outline-none text-white px-4 ml-4 md:px-6 lg:px-8 py-4 md:py-3.5 lg:py-4 hover:text-white bg-emerald-500 hover:bg-emerald-600 w-full h-12">
                                   Add To Cart
                                 </button>
                               </div>
